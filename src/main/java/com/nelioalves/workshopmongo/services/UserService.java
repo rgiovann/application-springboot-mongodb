@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+
 import com.nelioalves.workshopmongo.domain.User;
 import com.nelioalves.workshopmongo.dto.UserDTO;
 import com.nelioalves.workshopmongo.repository.UserRepository;
@@ -25,7 +27,7 @@ public class UserService {
 		// returns a Optional object, a container object which may or may not contain a non-null value.
 		Optional<User> obj = repo.findById(id);
 		
-		return obj.orElseThrow(() -> new ObjectNotFoundException("WARNING: Object not found."));		
+		return obj.orElseThrow(() -> new ObjectNotFoundException("WARNING: Object " + id + " not found."));		
 		
 	}
 	
@@ -37,6 +39,15 @@ public class UserService {
 	
 	public User UserFromDTO(UserDTO objDTO) {
 		return new User(objDTO.getId(), objDTO.getName(),objDTO.getEmail());
+	}
+	
+	// create method to delete user by id
+    //	
+	public void delete(String id) {
+		this.findById(id);
+		this.repo.deleteById(id);
+		 
+
 	}
 	
 	

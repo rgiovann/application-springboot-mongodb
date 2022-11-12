@@ -6,6 +6,7 @@ public class ObjectNotFoundException extends RuntimeException {
 
 	public ObjectNotFoundException(String msg) {
 		super(msg);
+		// TODO Auto-generated constructor stub
 	}
 	
 	
