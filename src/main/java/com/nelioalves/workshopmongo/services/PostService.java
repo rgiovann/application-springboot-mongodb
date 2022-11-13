@@ -27,7 +27,12 @@ public class PostService {
 	}
 	
 	public List<Post> findByTitle(String text){
-		return repo.findByTitleContainingIgnoreCase(text);
+				
+		//return repo.findByTitleContainingIgnoreCase(text);
+		
+		// using dbmong query through annotations
+		return repo.searchTitle(text);
+
 	}
 	
 
